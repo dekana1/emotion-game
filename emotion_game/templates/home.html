@@ -59,38 +59,43 @@
             </div>
 
 
-            <form action="{% url 'game:home' %}" enctype="multipart/form-data" method="post" name="entry-form" id="entry-form">
+<!--            <form action="{% url 'game:home' %}" enctype="multipart/form-data" method="post" name="entry-form" id="entry-form">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="text" id="user_entry" name="user_entry" placeholder="Make a sentence...">-->
+<!--                <button type="button" name="submit" onclick="send_entry()">Send!</button>-->
+<!--            </form>-->
+              <form action="{% url 'game:predictor' %}" enctype="multipart/form-data" method="post" name="entry-form" id="entry-form">
                 {% csrf_token %}
                 <input type="text" id="user_entry" name="user_entry" placeholder="Make a sentence...">
-                <button type="button" name="submit" onclick="send_entry()">Send!</button>
+                <button type="button" name="submit">Send!</button>
             </form>
 
             <p>Our AI predicted that your sentence is {{predicted_emotion}}</p>
 
         </div>
     </div>
-<script type="text/javascript">
-    function send_entry(){
-        console.log("In")
-        $.ajax({
-            type:'POST',
-            url:'{% url "game:predictor" %}',
-            data:
-            {
-                user_entry: $('input[name=user_entry]').val(),
-                word_bank: $('input[name=word_bank]').val(),
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            },
-            success:function(data)
-            {
-                  var p_data = JSON.parse(data)
-                  console.log(p_data)
-                  alert('Sent!');
-            }
+<!--<script type="text/javascript">-->
+<!--    function send_entry(){-->
+<!--        console.log("In")-->
+<!--        $.ajax({-->
+<!--            type:'POST',-->
+<!--            url:'{% url "game:predictor" %}',-->
+<!--            data:-->
+<!--            {-->
+<!--                user_entry: $('input[name=user_entry]').val(),-->
+<!--                word_bank: $('input[name=word_bank]').val(),-->
+<!--                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),-->
+<!--            },-->
+<!--            success:function(data)-->
+<!--            {-->
+<!--                  var p_data = JSON.parse(data)-->
+<!--                  console.log(p_data)-->
+<!--                  alert('Sent!');-->
+<!--            }-->
 
-        });
-    }
-    </script>
+<!--        });-->
+<!--    }-->
+<!--    </script>-->
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"
           integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
