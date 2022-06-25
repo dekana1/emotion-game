@@ -1,0 +1,95 @@
+body{
+    /*background-color: rgb(255, 120, 100);*/
+    margin: 0;
+    font-family: sans-serif;
+    background-image: url('')
+
+}
+#welcome{
+    margin: 2px;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+
+}
+.game-heading{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2px;
+}
+#emotion-label{
+
+}
+#main{
+    background-color: hsl(193, 100%, 96%);
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: auto;
+    height: 95vh;
+}
+#game-stage{
+   /* padding: 20px 0px;*/
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#emoji-container{
+    width: 100%;
+    /*border: 0.2px solid black;*/
+    border-radius: 4px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#img-div{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+.emotion-img{
+    position: relative;
+    width: 100%;
+}
+#word-container{
+    display: flex;
+    justify-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    border: 1px solid;
+}
+.words{
+    width: max-content;
+    border: 2px solid ;
+    border-radius: 10px;
+    /*background-color: #ff7864;*/
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    display: inline;
+    font-size: 14px;
+    font-weight: 500;
+}
+#entry-form{
+    width: 100%;
+}
+#user_entry{
+    position: relative;
+    width: inherit;
+    height: 100px;
+    display: block;
+    padding: 2px;
+    border: 0;
+    background-color: blue;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Let's play!</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'game/game.css' %}">
+</head>
+<body>
+    <div id="main">
+<!--        <h1>Hello there, Player!</h1>-->
+
+<!--        <form action="">-->
+<!--            <label>Could you tell me your name?</label>-->
+<!--            <input type="text" name="player_name" required>-->
+<!--            <button type="button" name="Send">Send!</button>-->
+<!--        </form>-->
+
+        <div id="game-stage">
+            <p id="welcome">Welcome</p>
+            {% if request.user == 'AnonymousUser' %}
+                <p class="game-heading">friend</p>
+            {% else %}
+                <p class="game-heading">{{user}}</p>
+            {% endif %}
+
+            <!--            <p>For this round, Give me a sentence with a sentiment of ...</p>-->
+           <div id="emoji-container">
+                <div id="img-div">
+                    {% if sentiment_game_choice == 'surprise' %}
+                        <img src="{% static 'game/images/surprise.png' %}" class="emotion-img">
+                    {% elif sentiment_game_choice == 'fear' %}
+                        <img src="{% static 'game/images/fear.png' %}" class="emotion-img">
+                    {% elif sentiment_game_choice == 'disgust' %}
+                        <img src="{% static 'game/images/disgust.png' %}" class="emotion-img" >
+                    {% elif sentiment_game_choice == 'happy' %}
+                        <img src="{% static 'game/images/happy.png' %}" class="emotion-img">
+                    {% elif sentiment_game_choice == 'neutral' %}
+                        <img src="{% static 'game/images/neutral.png' %}" class="emotion-img">
+                    {% elif sentiment_game_choice == 'anger' %}
+                        <img src="{% static 'game/images/angry.png' %}" class="emotion-img">
+                    {% elif sentiment_game_choice == 'sad' %}
+                        <img src="{% static 'game/images/sad.png' %}" class="emotion-img">
+                    {% endif %}
+                </div>
+               <p id="emotion-label">{{sentiment_game_choice}}</p>
+           </div>
+
+            <div>
+                <p style="text-align: center; margin: 7px; font-size: 12px;">Make sure to use these words!</p>
+
+                <input name="word_bank" value="{{word_bank}}" type="hidden">
+
+                <div id="word-container">
+                    {% for word in word_bank %}
+                        <p class="words">{{word}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <form action="{% url 'game:home' %}" enctype="multipart/form-data" method="post" name="entry-form" id="entry-form">
+                {% csrf_token %}
+                <input type="text" id="user_entry" name="user_entry" placeholder="Make a sentence...">
+                <button type="button" name="submit" onclick="send_entry()">Send!</button>
+            </form>
+
+            <p>Our AI predicted that your sentence is {{predicted_emotion}}</p>
+
+        </div>
+    </div>
+<script type="text/javascript">
+    function send_entry(){
+        console.log("In")
+        $.ajax({
+            type:'POST',
+            url:'{% url "game:predictor" %}',
+            data:
+            {
+                user_entry: $('input[name=user_entry]').val(),
+                word_bank: $('input[name=word_bank]').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success:function(data)
+            {
+                  var p_data = JSON.parse(data)
+                  console.log(p_data)
+                  alert('Sent!');
+            }
+
+        });
+    }
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+</body>
+</html>
