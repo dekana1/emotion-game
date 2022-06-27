@@ -1,8 +1,8 @@
 body{
-    /*background-color: rgb(255, 120, 100);*/
+    /*background-color: #001220;*/
     margin: 0;
     font-family: sans-serif;
-    background-image: url('')
+    background-image: url('images/blob-scene-haikei.svg') no-repeat center;
 
 }
 #welcome{
