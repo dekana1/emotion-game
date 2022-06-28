@@ -1,57 +1,53 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
+ {% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Let's play!</title>
     <link rel="stylesheet" type="text/css" href="{% static 'game/game.css' %}">
 </head>
 <body>
-<main>
-    <div id="main">
-<!--        <h1>Hello there, Player!</h1>-->
+   <main>
+    <div id="game-stage">
+        <div id="name-div">
+             <p id="welcome">Welcome, </p>
+        {% if request.user == 'AnonymousUser' %}
+            <p class="game-heading">friend</p>
+        {% else %}
+            <p class="game-heading">{{user}}</p>
+        {% endif %}
+        </div>
 
-<!--        <form action="">-->
-<!--            <label>Could you tell me your name?</label>-->
-<!--            <input type="text" name="player_name" required>-->
-<!--            <button type="button" name="Send">Send!</button>-->
-<!--        </form>-->
-
-        <div id="game-stage">
-            <p id="welcome">Welcome</p>
-            {% if request.user == 'AnonymousUser' %}
-                <p class="game-heading">friend</p>
-            {% else %}
-                <p class="game-heading">{{user}}</p>
-            {% endif %}
-
-            <!--            <p>For this round, Give me a sentence with a sentiment of ...</p>-->
-           <div id="emoji-container">
+        <!--            <p>For this round, Give me a sentence with a sentiment of ...</p>-->
+       <div id="first-half">
+            <div id="emoji-container">
                 <div id="img-div">
-                    {% if game_choice == 'guilt' %}
-                        <img src="{% static 'game/images/surprise.png' %}" class="emotion-img">
-                    {% elif game_choice == 'fear' %}
-                        <img src="{% static 'game/images/fear.png' %}" class="emotion-img">
-                    {% elif game_choice == 'disgust' %}
-                        <img src="{% static 'game/images/disgust.png' %}" class="emotion-img" >
-                    {% elif game_choice == 'joy' %}
-                        <img src="{% static 'game/images/happy.png' %}" class="emotion-img">
-                    {% elif game_choice == 'shame' %}
-                        <img src="{% static 'game/images/neutral.png' %}" class="emotion-img">
-                    {% elif game_choice == 'anger' %}
-                        <img src="{% static 'game/images/angry.png' %}" class="emotion-img">
-                    {% elif game_choice == 'sadness' %}
-                        <img src="{% static 'game/images/sad.png' %}" class="emotion-img">
+                    {% if game_choice == 'Guilt' %}
+                        <img src="{% static 'game/images/emoji.png' %}" class="emotion-img">
+                    {% elif game_choice == 'Fear' %}
+                        <img src="{% static 'game/images/scare.png' %}" class="emotion-img">
+                    {% elif game_choice == 'Disgust' %}
+                        <img src="{% static 'game/images/sick.png' %}" class="emotion-img" >
+                    {% elif game_choice == 'Joy' %}
+                        <img src="{% static 'game/images/happiness.png' %}" class="emotion-img">
+                    {% elif game_choice == 'Shame' %}
+                        <img src="{% static 'game/images/embarrassed.png' %}" class="emotion-img">
+                    {% elif game_choice == 'Anger' %}
+                        <img src="{% static 'game/images/anger.png' %}" class="emotion-img">
+                    {% elif game_choice == 'Sadness' %}
+                        <img src="{% static 'game/images/sadness.png' %}" class="emotion-img">
                     {% endif %}
                 </div>
-               <p id="emotion-label">{{game_choice}}</p>
-           </div>
+                 <p id="emotion-label">{{game_choice}}</p>
+            </div>
+       </div>
 
-            <div>
-                <p style="text-align: center; margin: 7px; font-size: 12px;">Make sure to use these words!</p>
-                <input name="word_bank" value="{{word_bag}}" type="hidden">
+        <div id="second-half">
+            <div id="word-bank">
+<!--                <p id="word-heading">Make sure to use these words!</p>-->
+<!--                <input name="word_bank" value="{{word_bag}}" type="hidden">-->
 
-                <div id="word-container">
+                 <div id="word-container">
                     {% for word in word_bag %}
                         <p class="words">{{word}}</p>
                     {% endfor %}
@@ -60,19 +56,21 @@
 
 
 
-              <form action="{% url 'game:predictor' %}" enctype="multipart/form-data" method="post" name="entry-form" id="entry-form">
-                {% csrf_token %}
-                <input type="text" id="user_entry" name="user_entry" placeholder="Make a sentence...">
-                <button type="submit" name="submit">Send!</button>
-            </form>
-
-
+            <div id="entry-form">
+                <form action="{% url 'game:predictor' %}" enctype="multipart/form-data" method="post" name="entry-form"
+                style="width: 100%; height: 100%;">
+                    {% csrf_token %}
+                    <label>Enter your sentence:</label>
+                    <div id="textarea-wrapper"><textarea id="user-entry" name="user_entry"></textarea></div>
+                    <button type="submit" name="submit" id="button">SUBMIT</button>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
+
+    </div>
+   </main>
+
+
 </body>
 </html>

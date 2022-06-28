@@ -20,7 +20,7 @@ print(model)
 
 def game_choice():
 
-    round_choices = ["joy", 'fear', "anger", "sadness", "disgust", "shame", "guilt"]
+    round_choices = ["Joy", 'Fear', "Anger", "Sadness", "Disgust", "Shame", "Guilt"]
 
     current_round_sentiment = random.choice(round_choices)
 
