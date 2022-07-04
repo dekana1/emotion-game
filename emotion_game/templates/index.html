@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Welcome!</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'game/front.css' %}">
+
+</head>
+<body style="margin: 0;">
+    <main>
+        <div class="emoji-orbit">
+            <img src="{% static 'game/images/anger.png' %}" alt="" class="emoji" id="anger">
+            <img src="{% static 'game/images/sick.png' %}" alt="" class="emoji" id="sick">
+            <img src="{% static 'game/images/scare.png' %}" alt="" class="emoji" id="scare">
+            <img src="{% static 'game/images/happiness.png' %}" alt="" class="emoji" id="happiness">
+            <img src="{% static 'game/images/embarrassed.png' %}" alt="" class="emoji" id="embarrassed">
+            <img src="{% static 'game/images/sadness.png' %}" alt="" class="emoji" id="sadness">
+            <img src="{% static 'game/images/emoji.png' %}" alt="" class="emoji" id="guilt">
+
+        </div>
+        <div class="glass-floor">
+            <a href="{% url 'game:home' %}"><button>PLAY!</button></a>
+        </div>
+
+    </main>
+</body>
+</html>

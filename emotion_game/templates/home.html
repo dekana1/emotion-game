@@ -1,13 +1,8 @@
-<!DOCTYPE html>
- {% load static %}
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Let's play!</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'game/game.css' %}">
-</head>
-<body>
-   <main>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
     <div id="game-stage">
         <div id="name-div">
              <p id="welcome">Welcome, </p>
@@ -61,7 +56,7 @@
                 style="width: 100%; height: 100%;">
                     {% csrf_token %}
                     <label>Enter your sentence:</label>
-                    <div id="textarea-wrapper"><textarea id="user-entry" name="user_entry"></textarea></div>
+                    <div id="textarea-wrapper"><textarea id="user-entry" name="user_entry" required></textarea></div>
                     <button type="submit" name="submit" id="button">SUBMIT</button>
                 </form>
             </div>
@@ -69,8 +64,4 @@
 
 
     </div>
-   </main>
-
-
-</body>
-</html>
+{% endblock %}

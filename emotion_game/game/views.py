@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from sklearn.feature_extraction import DictVectorizer
 import ml_model
 import pandas as pd
@@ -44,6 +44,11 @@ def evaluate_entry(user_entry, word_bag):
         return "You didn't use any words!"
     else:
         return words_used_user_list, len(words_used_user_list)
+
+
+def front(request):
+
+    return render(request, 'index.html')
 
 
 def home(request):

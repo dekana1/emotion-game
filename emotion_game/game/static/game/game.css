@@ -146,4 +146,11 @@ label{
     background-color: rgb(255, 0, 102);
     color: white;
     box-shadow: 5px 5px rgba(255, 255, 255, 0.8);
+    transition: background-color 0.5s, color 0.5s, width 0.5s;
+}
+#button:hover, #button:active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 0, 102);
+    width: 300px;
+    box-shadow: 5px 5px rgba(255, 0, 102, 0.8);
 }

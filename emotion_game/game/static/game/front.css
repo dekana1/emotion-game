@@ -1,0 +1,105 @@
+main{
+
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            background-image: url('images/blob-scene-haikei-purple.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            overflow: hidden;
+
+        }
+        .emoji{
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: spinSolar 7s linear 0s infinite;
+        }
+        .emoji-orbit{
+            width: 600px;
+            height: 600px;
+            /* border: 1px solid white; */
+            border-radius: 50%;
+            animation: spinSolar 12s linear 0s infinite;
+        }
+        #anger{
+
+            left: 220px;
+            top: -70px;
+        }
+        #happiness{
+
+            left: -10px;
+            top: -110px;
+
+        }
+        #scare{
+            top: 55px;
+            left: 155px;
+        }
+        #guilt{
+            top: -20px;
+            left: -60px;
+        }
+
+        #embarrassed{
+
+            left: -70px;
+            bottom: -320px
+        }
+        #sick{
+            left: 360px;
+            bottom: -290px
+        }
+        #sadness{
+            bottom: -320px;
+            left: 60px;
+        }
+        @keyframes spinSolar {
+      from {
+        transform: rotate(0);
+      }
+      to{
+        transform: rotate(359deg);
+      }
+    }
+    .glass-floor{
+        backdrop-filter: blur(8px) saturate(180%);
+        -webkit-backdrop-filter: blur(16x) saturate(180%);
+        background-color: rgba(0, 0, 0, 0.8);
+        position:absolute;
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        justify-content: center;
+        /* border-top: white 1px solid; */
+        box-shadow: 0px 0px 10px 0px rgba(153, 152, 152, 0.8), 0 0px 20px 0 rgba(255, 255, 255, 0.8);
+    }
+    a{
+        display: contents;
+    }
+    button{
+        position: absolute;
+        width: 350px;
+        font-size: 16px;
+        padding: 16px 16px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(255, 0, 102);
+        color: white;
+        box-shadow: 5px 5px rgba(255, 255, 255, 0.8);
+        top: -30px;
+
+        transition: background-color 0.5s, color 0.5s, width 0.5s;
+        }
+    button:hover, button:active{
+        background-color: rgb(255, 255, 255);
+        color: rgb(255, 0, 102);
+        width: 300px;
+        box-shadow: 5px 5px rgba(255, 0, 102, 0.8);
+    }
