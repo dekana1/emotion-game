@@ -67,7 +67,7 @@ def predictor(request):
         features = ml_model.create_feature(user_entry, nrange=(1, 4))
         features = ml_model.vectorizer.transform(features)
         predicted_emotion = model.predict(features)[0]
-        print(predicted_emotion)
+        print(str(predicted_emotion).capitalize())
 
-        return render(request, 'result.html', context={'result': predicted_emotion})
+        return render(request, 'result.html', context={'result': str(predicted_emotion).capitalize()})
 

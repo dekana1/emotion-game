@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="game-stage">
+
         <div id="name-div">
              <p id="welcome">Welcome, </p>
         {% if request.user == 'AnonymousUser' %}
@@ -57,11 +57,8 @@
                     {% csrf_token %}
                     <label>Enter your sentence:</label>
                     <div id="textarea-wrapper"><textarea id="user-entry" name="user_entry" required></textarea></div>
-                    <button type="submit" name="submit" id="button">SUBMIT</button>
+                    <button type="submit" name="submit" class="button primary-btn">SUBMIT</button>
                 </form>
             </div>
         </div>
-
-
-    </div>
 {% endblock %}

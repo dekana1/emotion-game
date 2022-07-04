@@ -3,6 +3,18 @@
 
 {% block body %}
 
-    <h1>According to our calculation we can predict that you have : {{result}}</h1>
-
+    <div id="result-div">
+        <p id="result-header">Our AI predicted:</p>
+        <p id="ai-result">{{result}}!</p>
+        <div id="rating">
+            <img class="star" src="{% static 'game/images/gold-star.png' %}">
+            <img class="star" src="{% static 'game/images/gold-star.png' %}">
+            <img class="star" src="{% static 'game/images/gold-star.png' %}">
+            <img class="star" src="{% static 'game/images/grey-star.png' %}">
+        </div>
+        <div>
+            <button class="button secondary-btn">Nah...</button>
+            <button class="button primary-btn result-btn">Play Again!</button>
+        </div>
+    </div>
 {% endblock %}

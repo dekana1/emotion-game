@@ -34,8 +34,8 @@ main{
     background-color:  rgba(0, 0, 0, 0.6);
     /*border: 7px rgb(0, 0, 0) dashed;*/
     border-radius: 5px;
-    height: 95%;
-
+    height: max-content;
+    padding-bottom: 20px;
 }
 #name-div{
     height: 40px;
@@ -60,7 +60,7 @@ main{
 }
 #first-half{
     padding:20px;
-    height: 35%;
+    height: 240px;
 }
 #emoji-container{
     border: none;
@@ -136,21 +136,57 @@ label{
     height: 100px;
 
 }
-#button{
+.button{
     width: 350px;
     font-size: 16px;
     padding: 8px 16px;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
+
+}
+.primary-btn{
     background-color: rgb(255, 0, 102);
     color: white;
     box-shadow: 5px 5px rgba(255, 255, 255, 0.8);
     transition: background-color 0.5s, color 0.5s, width 0.5s;
 }
-#button:hover, #button:active{
+.primary-btn:hover, .primary-btn:active{
     background-color: rgb(255, 255, 255);
     color: rgb(255, 0, 102);
-    width: 300px;
+    width: calc(100% - 50px);
     box-shadow: 5px 5px rgba(255, 0, 102, 0.8);
+}
+
+#result-div{
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 16px;
+    padding: 40px;
+
+}
+#result-header{
+    font-size: 16px;
+}
+#ai-result{
+    font-size: 32px;
+    color: #623078;
+    font-weight: 700;
+}
+.star{
+    width: 40px;
+
+}
+.result-btn{
+    margin-left: 10px;
+    width: 100px;
+    padding: 8px 8px;
+}
+.result-btn:hover{
+    width: 150px;
+}
+
+.secondary-btn{
+    width: 100px;
+    padding: 8px 8px;
 }
