@@ -12,60 +12,74 @@ main{
             background-size: cover;
             overflow: hidden;
 
-        }
-        .emoji{
-            width: 150px;
-            height: 150px;
-            position: relative;
-            animation: spinSolar 7s linear 0s infinite;
-        }
-        .emoji-orbit{
-            width: 600px;
-            height: 600px;
-            /* border: 1px solid white; */
-            border-radius: 50%;
-            animation: spinSolar 12s linear 0s infinite;
-        }
-        #anger{
+}
 
-            left: 220px;
-            top: -70px;
-        }
-        #happiness{
+.emoji{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    animation: spinSolar 7s linear 0s infinite;
+}
 
-            left: -10px;
-            top: -110px;
+.emoji-orbit{
+    width: 600px;
+    height: 600px;
+    margin-top: 100px;
 
-        }
-        #scare{
-            top: 55px;
-            left: 155px;
-        }
-        #guilt{
-            top: -20px;
-            left: -60px;
-        }
+    /* border: 1px solid white; */
+    border-radius: 50%;
+   animation: spinSolar 12s linear 0s infinite;
+}
+#anger{
 
-        #embarrassed{
+    left: 220px;
+    top: -70px;
+}
+#happiness{
 
-            left: -70px;
-            bottom: -320px
-        }
-        #sick{
-            left: 360px;
-            bottom: -290px
-        }
-        #sadness{
-            bottom: -320px;
-            left: 60px;
-        }
-        @keyframes spinSolar {
-      from {
-        transform: rotate(0);
-      }
-      to{
-        transform: rotate(359deg);
-      }
+    left: -10px;
+    top: -110px;
+
+}
+#scare{
+    top: 55px;
+    left: 155px;
+}
+#guilt{
+    top: -20px;
+    left: -60px;
+}
+
+#embarrassed{
+
+    left: -70px;
+    bottom: -320px
+}
+#sick{
+    left: 360px;
+    bottom: -290px
+}
+#sadness{
+    bottom: -320px;
+    left: 60px;
+}
+@keyframes spinSolar {
+from {
+transform: rotate(0);
+}
+to{
+transform: rotate(359deg);
+}
+}
+    #center-piece{
+       width: max-content;
+       position: absolute;
+       /*border: 2px solid white;*/
+       top: 270px;
+       left: 200px;
+       z-index: 3;
+       display: flex;
+       flex-direction: row;
     }
     .glass-floor{
         backdrop-filter: blur(16px) saturate(180%);

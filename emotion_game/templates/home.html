@@ -39,9 +39,8 @@
 
         <div id="second-half">
             <div id="word-bank">
-<!--                <p id="word-heading">Make sure to use these words!</p>-->
-<!--                <input name="word_bank" value="{{word_bag}}" type="hidden">-->
-
+                <p id="word-heading">Make sure to use these words!</p>
+            
                  <div id="word-container">
                     {% for word in word_bag %}
                         <p class="words">{{word}}</p>
@@ -49,16 +48,49 @@
                 </div>
             </div>
 
-
-
             <div id="entry-form">
                 <form action="{% url 'game:predictor' %}" enctype="multipart/form-data" method="post" name="entry-form"
-                style="width: 100%; height: 100%;">
+                style="width: 100%; height: 100%;" id="form">
                     {% csrf_token %}
+                    <input id="permitted_words"name="word_bank" value="{{word_bag}}" type="hidden">
+                    <input id="game_choice"name="game_choice" value="{{game_choice}}" type="hidden">
                     <label>Enter your sentence:</label>
                     <div id="textarea-wrapper"><textarea id="user-entry" name="user_entry" required></textarea></div>
-                    <button type="submit" name="submit" class="button primary-btn">SUBMIT</button>
+                    <button type="submit" name="submit" class="button primary-btn" id="submit">SUBMIT</button>
                 </form>
             </div>
+            
+
         </div>
+<script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
+
+<script>
+//     $(document).ready(function(){
+
+//     $('#submit').on('click', function(){
+       
+//        $.ajax({
+           
+//            url: "{% url 'game:predictor' %}",
+//            type: "POST",
+//            data: {
+//                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+//                user_entry: $('#user_entry').text(),
+//                game_choice: $('#emotion-label').text(),
+//                word_bag: $('#permitted_words').val()
+//            }, 
+           
+//            success: function(msg) {
+//                console.log("success!");
+//            }
+
+//        });
+   
+
+// });
+//     });
+    
+    
+   
+</script>
 {% endblock %}

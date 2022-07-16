@@ -7,11 +7,23 @@
     <meta name="viewport" content="width=device-width">
     <title>Welcome!</title>
     <link rel="stylesheet" type="text/css" href="{% static 'game/front.css' %}">
+    <link rel="icon" href="{% static 'game/images/game-icon.ico' %}" type = "image/x-icon">
+    <script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
+
 
 </head>
 <body style="margin: 0;">
     <main>
+         <div id="center-piece">
+                <div id="switching-emojis"><img src="{% static 'game/images/happiness.png' %}" width="90px"></div>
+                <div>
+                    <p class="center-game-title">AI POWERED</p>
+                <P class="center-game-title">emotion detection game</P>
+                </div>
+
+            </div>
         <div class="emoji-orbit">
+
             <img src="{% static 'game/images/anger.png' %}" alt="" class="emoji" id="anger">
             <img src="{% static 'game/images/sick.png' %}" alt="" class="emoji" id="sick">
             <img src="{% static 'game/images/scare.png' %}" alt="" class="emoji" id="scare">
@@ -20,7 +32,10 @@
             <img src="{% static 'game/images/sadness.png' %}" alt="" class="emoji" id="sadness">
             <img src="{% static 'game/images/emoji.png' %}" alt="" class="emoji" id="guilt">
 
+
+
         </div>
+
         <div class="glass-floor">
             <a href="{% url 'game:home' %}"><button>PLAY!</button></a>
         </div>

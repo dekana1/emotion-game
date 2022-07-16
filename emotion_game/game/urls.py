@@ -8,5 +8,7 @@ urlpatterns = [
     path('', views.front, name='front'),
     path('home', views.home, name='home'),
     path('result', views.predictor, name='predictor'),
+    
+    
 ]
 

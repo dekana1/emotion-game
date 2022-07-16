@@ -4,17 +4,59 @@
 {% block body %}
 
     <div id="result-div">
-        <p id="result-header">Our AI predicted:</p>
-        <p id="ai-result">{{result}}!</p>
+        <p id="result-header">{{result_header}}</p>
+        
+        <div> <p> Game asked: {{game}}</p>
+              <p id="ai-result">You gave: {{result}}!</p>
+        </div>
         <div id="rating">
-            <img class="star" src="{% static 'game/images/gold-star.png' %}">
-            <img class="star" src="{% static 'game/images/gold-star.png' %}">
-            <img class="star" src="{% static 'game/images/gold-star.png' %}">
             <img class="star" src="{% static 'game/images/grey-star.png' %}">
+            <img class="star" src="{% static 'game/images/grey-star.png' %}">
+            <img class="star" src="{% static 'game/images/grey-star.png' %}">
+            <img class="star" src="{% static 'game/images/grey-star.png' %}">
+            
+            <input id="stars" type="hidden" value="{{stars}}">
+            <input id="gold_stars" type="hidden" value="{% static 'game/images/gold-star.png' %}">
+            <input id="grey_stars" type="hidden" value="{% static 'game/images/grey-star.png' %}">
         </div>
         <div>
-            <button class="button secondary-btn">Nah...</button>
-            <button class="button primary-btn result-btn">Play Again!</button>
+            <a href="{% url 'game:front' %}"><button class="button secondary-btn">Nah...</button></a>
+            <a href="{% url 'game:home' %}"><button class="button primary-btn result-btn">Play Again!</button></a>
         </div>
     </div>
+        
+    </div>
+
+    <script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+
+        $('.star').hide();
+
+        const stars = $("#stars").val()
+        const gold_star = $('#gold_stars').val()
+        
+        console.log(stars)
+        
+        let star_element = document.getElementsByClassName('star');
+        for (var i = 0; i < stars; i++){
+            
+            star_element[i].setAttribute('src', gold_star);
+            
+        }
+        $('.star').show();
+        // for (var i = 0; i <= 4-stars; i++){
+        //     let star_element = document.createElement("img")
+        //     $("#rating").append(star_element);
+            
+        //     $('img').attr('src', grey_star);
+        //     $('img').attr('class', 'star');
+        
+        // }
+
+
+    });
+    
+</script>
 {% endblock %}
+
