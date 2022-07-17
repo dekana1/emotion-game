@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block body %}
-
+    <div class="game-stage">
         <div id="name-div">
              <p id="welcome">Welcome, </p>
         {% if request.user == 'AnonymousUser' %}
@@ -62,33 +62,17 @@
             
 
         </div>
+    </div>
 <script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
 
 <script>
-//     $(document).ready(function(){
+    $(document).ready(function(){
 
-//     $('#submit').on('click', function(){
-       
-//        $.ajax({
-           
-//            url: "{% url 'game:predictor' %}",
-//            type: "POST",
-//            data: {
-//                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-//                user_entry: $('#user_entry').text(),
-//                game_choice: $('#emotion-label').text(),
-//                word_bag: $('#permitted_words').val()
-//            }, 
-           
-//            success: function(msg) {
-//                console.log("success!");
-//            }
-
-//        });
+        $('#user-entry').focus();
    
 
-// });
-//     });
+});
+
     
     
    

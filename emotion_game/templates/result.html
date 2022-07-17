@@ -2,31 +2,39 @@
 {% load static %}
 
 {% block body %}
-
-    <div id="result-div">
-        <p id="result-header">{{result_header}}</p>
+    <div class="game-stage">
+        <div id="result-div">
         
-        <div> <p> Game asked: {{game}}</p>
-              <p id="ai-result">You gave: {{result}}!</p>
-        </div>
-        <div id="rating">
-            <img class="star" src="{% static 'game/images/grey-star.png' %}">
-            <img class="star" src="{% static 'game/images/grey-star.png' %}">
-            <img class="star" src="{% static 'game/images/grey-star.png' %}">
-            <img class="star" src="{% static 'game/images/grey-star.png' %}">
+            <div id="rating">
+                <img class="star" src="{% static 'game/images/grey-star.png' %}">
+                <img class="star" src="{% static 'game/images/grey-star.png' %}">
+                <img class="star" src="{% static 'game/images/grey-star.png' %}">
+                <img class="star" src="{% static 'game/images/grey-star.png' %}">
+                
+                <input id="stars" type="hidden" value="{{stars}}">
+                <input id="gold_stars" type="hidden" value="{% static 'game/images/gold-star.png' %}">
+                <input id="grey_stars" type="hidden" value="{% static 'game/images/grey-star.png' %}">
+            </div>
+    
+            <p id="ai-result">{{result_header}}!</p>
             
-            <input id="stars" type="hidden" value="{{stars}}">
-            <input id="gold_stars" type="hidden" value="{% static 'game/images/gold-star.png' %}">
-            <input id="grey_stars" type="hidden" value="{% static 'game/images/grey-star.png' %}">
+            <div> 
+                <p class="game-analysis"><span>Game asked: </span> <span>{{game}}</span></p>
+                <p class="game-analysis"><span> You gave: </span><span>{{result}}</span></p>
+            </div>
+            <div style="margin: 20px 0px 25px;">
+                <a href="{% url 'game:front' %}"><button class="button secondary-btn">Nah...</button></a>
+                <a href="{% url 'game:home' %}"><button class="button primary-btn result-btn">Play Again!</button></a>
+            </div>
+            <div id="score-board">
+                <img src="{% static 'game/images/gold-star.png' %}"><span>500</span>
+            </div>
         </div>
-        <div>
-            <a href="{% url 'game:front' %}"><button class="button secondary-btn">Nah...</button></a>
-            <a href="{% url 'game:home' %}"><button class="button primary-btn result-btn">Play Again!</button></a>
-        </div>
-    </div>
+            
         
+    
     </div>
-
+    
     <script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
 <script>
     $(document).ready(function(){

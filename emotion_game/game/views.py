@@ -53,8 +53,8 @@ def predictor(request):
 
     context = dict()
 
-    congrats_words = ['Success', 'Good Job', 'Weldone', 'Awesome']
-    failure_words = ['Uh-Oh', 'Too Bad', 'Nice try', 'Sorry']
+    congrats_words = ['Success', 'Good Job', 'Well done', 'Awesome']
+    failure_words = ['Uh-Oh', 'Too Bad', 'Try Again', 'Sorry']
     stars = 0
 
     if request.method == 'POST':
