@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<div class="game-stage">
+  <div class="name-div">
+     <p class="game-heading">Sign in existing Players:</p>
+  </div>
+  <div id="user-list-board">
+        <div id="user-list">
+            
+            <ol>
+                {% for users in user_info.values %} 
+                    {% for user in users %} 
+                        <li class="existing-user">{{user.name}} <span><img src="{% static 'game/images/gold-star.png' %}" width="30">{{user.stars}}</span> </li>
+                    {% endfor %} 
+                {% endfor %}
+            </ol>
+            
+        </div>
+        
+        <div id="signup-button-div">
+            <p>New here?</p>
+            <button class="button primary-btn">SIGN UP</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

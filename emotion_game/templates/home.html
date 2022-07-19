@@ -3,14 +3,15 @@
 {% load static %}
 
 {% block body %}
+    <div></div>
     <div class="game-stage">
-        <div id="name-div">
-             <p id="welcome">Welcome, </p>
-        {% if request.user == 'AnonymousUser' %}
+        <div class="name-div">
+             <p class="game-heading">Give a sentence with this sentiment:  </p>
+        <!-- {% if user == AnonymousUser %}
             <p class="game-heading">friend</p>
         {% else %}
             <p class="game-heading">{{user}}</p>
-        {% endif %}
+        {% endif %} -->
         </div>
 
         <!--            <p>For this round, Give me a sentence with a sentiment of ...</p>-->
@@ -39,7 +40,7 @@
 
         <div id="second-half">
             <div id="word-bank">
-                <p id="word-heading">Make sure to use these words!</p>
+                <p id="word-heading">Try to use these words</p>
             
                  <div id="word-container">
                     {% for word in word_bag %}
@@ -69,7 +70,7 @@
     $(document).ready(function(){
 
         $('#user-entry').focus();
-   
+        
 
 });
 
