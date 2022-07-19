@@ -1,28 +1,53 @@
 {% extends 'base.html' %} {% load static %} {% block body %}
 
 <div class="game-stage">
-  <div class="name-div">
-     <p class="game-heading">Sign in existing Players:</p>
+  <div id="main-container">
+        <div class="name-div">
+         <p class="game-heading">Sign in existing Players:</p>
+        </div>
+        <div id="user-list-board">
+            <div id="user-list">
+               
+               <ol>
+                   {% for users in user_info.values %} 
+                       {% for user in users %} 
+                           <li class="existing-user">{{user.name}} <span style="display: flex; align-items: flex-start;"><img src="{% static 'game/images/gold-star.png' %}" width="30" style="display: block; margin-right: 5px;">{{user.stars}}</span></li>
+                       {% endfor %} 
+                   {% endfor %}
+               </ol>
+               
+           </div>
+           
+           <div id="signup-button-div">
+               <p>New here?</p>
+               <button class="button primary-btn" id="signup">SIGN UP</button>
+           </div>
+       </div>
+       <div id="new-user-name" style="display: none;">
+            <div style="display: flex; flex-direction: column; width: 90%; align-items: center;">
+                <input type="text" class="new-user-input">
+                <button class="button primary-btn">Play!</button>
+            </div>
+       </div>
   </div>
-  <div id="user-list-board">
-        <div id="user-list">
-            
-            <ol>
-                {% for users in user_info.values %} 
-                    {% for user in users %} 
-                        <li class="existing-user">{{user.name}} <span><img src="{% static 'game/images/gold-star.png' %}" width="30">{{user.stars}}</span> </li>
-                    {% endfor %} 
-                {% endfor %}
-            </ol>
-            
-        </div>
-        
-        <div id="signup-button-div">
-            <p>New here?</p>
-            <button class="button primary-btn">SIGN UP</button>
-        </div>
-    </div>
 </div>
+<script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
 
+<script>
+    $(document).ready(function(){
 
+       $('#signup').click(function(){
+            $('#user-list-board').animate({
+                left: '250px', 
+                opacity: '0',
+
+            }, 2);
+            $('#user-list-board').remove();
+            $('.game-heading').text("Enter Username");
+            $('#new-user-name').css("display", "flex");
+       });
+        
+
+});
+</script>
 {% endblock %}
