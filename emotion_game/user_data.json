@@ -1,4 +1,35 @@
-{"players":[
-    { "name":"Chinenye", "stars":100 },
-    { "name":"Dekana", "stars":200 }
-  ]}
+{
+    "players": [
+        {
+            "name": "Chinenye",
+            "stars": 100
+        },
+        {
+            "name": "Dekana",
+            "stars": 200
+        },
+        {
+            "name": "bola",
+            "stars": 0
+        },
+        {
+            "name": "helen",
+            "stars": 0
+        },
+        {
+            "name": "bube",
+            "stars": 0
+        },
+        {
+            "name": "binnie",
+            "stars": 0
+        },
+        {
+            "name": "ojo",
+            "stars": 0
+        },
+        {
+            "name": "bube"
+        }
+    ]
+}

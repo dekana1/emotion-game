@@ -1,4 +1,10 @@
+from audioop import reverse
+from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth import login
+from django.contrib.auth import logout as django_logout
 from django.http import JsonResponse
 from django.core import serializers
 from sklearn.feature_extraction import DictVectorizer
@@ -11,6 +17,10 @@ import re
 from collections import Counter
 
 import json
+
+from .models import Player
+from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -49,20 +59,63 @@ def front(request):
 
 
 
+def write_json(new_data, filename='user_data.json'):
+    with open(filename,'r+') as file:
+          # First we load existing data into a dict.
+        file_data = json.load(file)
+        # Join new_data with file_data inside emp_details
+        file_data["players"].append(new_data)
+        # Sets file's current position at offset.
+        file.seek(0)
+        # convert back to json.
+        json.dump(file_data, file, indent = 4)
 
 
+# Check user name exists
+
+
+def check_username(request):
+    # username = request.GET.get("new-user-name-input")
+    # data = {
+    #     'username_exists': User.objects.filter(username=username).exists()
+    # }
+    # print('data', data)
+    return JsonResponse()
 
 # user signin 
-def signin(request):
+def signup(request):
     context = {}
-    with open("user_data.json") as user_info_json:
-        user_info = json.load(user_info_json)
+    print("signup", request.user)
+    if request.method == 'POST':
+        
+        new_user_name = request.POST.get('new-user-name-input')
+        
+        try:
+            user = User.objects.create(username=new_user_name)
+            new_player = Player.objects.create(name=user)
+            new_player.save()
 
-    context['user_info'] = user_info
+        except IntegrityError:
+            messages.error(request, "That username already exist")
 
-    print("hey", context['user_info'])
-
+    context['user_info'] = Player.objects.all()
+    
     return render(request, 'signin.html', context)
+
+
+def user_login(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        user = User.objects.get(username=username)
+
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(request, user)
+        print(request.user)
+
+        return redirect('game:home')
+
+    return render(request, 'signin.html')
 
 # Selects the sentiment of the game stage
 
@@ -84,12 +137,13 @@ def word_bag_generator():
 
 
 # View function for game home page 
-
+@login_required
 def home(request):
     context = dict()
     context['game_choice'] = game_choice()
     context['word_bag'] = word_bag_generator()
-
+    context['user'] = ''
+    print("in home", request.user)
     return render(request, 'home.html', context)
 
 
@@ -111,8 +165,8 @@ def predictor(request):
         word_bank = request.POST.get('word_bank')
         game = request.POST.get("game_choice")
 
-        print(game)
-        print(word_bank)
+        # print(game)
+        # print(word_bank)
 
         # Convert entry into features and make predictions 
 
@@ -130,6 +184,9 @@ def predictor(request):
 
         # if user_entry matches given game sentiment
 
+        player = Player.objects.get(name=request.user)
+        # print('player name', player.name)
+
         if game == predicted_emotion:
             context['result_header'] = random.choice(congrats_words)
 
@@ -143,6 +200,7 @@ def predictor(request):
             
             if word_count <= 2:
                 stars = 1
+
             elif word_count in range(3, 6):
                 stars = 2
             
@@ -152,12 +210,22 @@ def predictor(request):
             else: 
                 stars = 4
 
-            context['stars'] = stars
+            context['current_stars'] = stars
             
+            # update players stars
+            player.stars += stars
+            player.save()
+
+
         # if user_entry doesn't match sentiment
         else:
             context['result_header'] = random.choice(failure_words)
-            context['stars'] = stars
+            context['current_stars'] = stars
 
+        context['total_stars'] = player.stars
     return render(request, 'result.html', context)
 
+
+def logout(request):
+    django_logout(request)
+    return redirect('game:front')

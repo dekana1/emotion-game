@@ -11,7 +11,7 @@
                 <img class="star" src="{% static 'game/images/grey-star.png' %}">
                 <img class="star" src="{% static 'game/images/grey-star.png' %}">
                 
-                <input id="stars" type="hidden" value="{{stars}}">
+                <input id="stars" type="hidden" value="{{current_stars}}">
                 <input id="gold_stars" type="hidden" value="{% static 'game/images/gold-star.png' %}">
                 <input id="grey_stars" type="hidden" value="{% static 'game/images/grey-star.png' %}">
             </div>
@@ -23,11 +23,11 @@
                 <p class="game-analysis"><span> You gave: </span><span>{{result}}</span></p>
             </div>
             <div style="margin: 20px 0px 25px;">
-                <a href="{% url 'game:front' %}"><button class="button secondary-btn">Nah...</button></a>
+                <a href="{% url 'game:logout' %}"><button class="button secondary-btn">Nah...</button></a>
                 <a href="{% url 'game:home' %}"><button class="button primary-btn result-btn">Play Again!</button></a>
             </div>
             <div id="score-board">
-                <img src="{% static 'game/images/gold-star.png' %}"><span>500</span>
+                <img src="{% static 'game/images/gold-star.png' %}"><span>{{total_stars}}</span>
             </div>
         </div>
             
@@ -53,15 +53,7 @@
             
         }
         $('.star').show();
-        // for (var i = 0; i <= 4-stars; i++){
-        //     let star_element = document.createElement("img")
-        //     $("#rating").append(star_element);
-            
-        //     $('img').attr('src', grey_star);
-        //     $('img').attr('class', 'star');
-        
-        // }
-
+       
 
     });
     

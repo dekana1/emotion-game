@@ -8,25 +8,41 @@
         <div id="user-list-board">
             <div id="user-list">
                
-               <ol>
+               <!-- <ol>
                    {% for users in user_info.values %} 
                        {% for user in users %} 
                            <li class="existing-user">{{user.name}} <span style="display: flex; align-items: flex-start;"><img src="{% static 'game/images/gold-star.png' %}" width="30" style="display: block; margin-right: 5px;">{{user.stars}}</span></li>
                        {% endfor %} 
                    {% endfor %}
-               </ol>
+               </ol> -->
+               <ol>
+                {% csrf_token %}
+                {% for users in user_info %} 
+                     
+                    <li class="existing-user" onclick="login('{{users.name}}')" value="{{users.name}}" id="{{users.name}}">{{users.name}} <span style="display: flex; align-items: flex-start;"><img src="{% static 'game/images/gold-star.png' %}" width="30" style="display: block; margin-right: 5px;">{{users.stars}}</span></li>
+                
+                {% endfor %}
+            </ol>
                
            </div>
-           
+           {% if messages %}
+            {% for message in messages %}
+                        <div style="width: 100%; display: flex;"><p style="color: white;">{{message}}</p></div>
+                {% endfor %}
+            {% endif %}      
            <div id="signup-button-div">
                <p>New here?</p>
                <button class="button primary-btn" id="signup">SIGN UP</button>
            </div>
        </div>
        <div id="new-user-name" style="display: none;">
-            <div style="display: flex; flex-direction: column; width: 90%; align-items: center;">
-                <input type="text" class="new-user-input">
-                <button class="button primary-btn">Play!</button>
+            <div style="width: 90%;">
+                <form method="post" action="{% url  'game:signup' %}" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
+                    {% csrf_token %}
+                    <input type="text" class="new-user-input" id="new-user-name-input" name="new-user-name-input" autofocus="" >
+                    
+                    <button class="button primary-btn" type="submit" id="register-btn">Register & Play!</button>
+                </form>
             </div>
        </div>
   </div>
@@ -34,6 +50,20 @@
 <script src="{% static 'game/js/jquery-3.6.0.min.js' %}"></script>
 
 <script>
+    function login(username){
+            
+            $.ajax({
+                type:'POST',
+                url: "{% url 'game:user_login' %}",
+                data: {
+                    "username": username,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data) {
+                    window.location.href = "{% url 'game:home' %}"
+                }
+            })
+       };
     $(document).ready(function(){
 
        $('#signup').click(function(){
@@ -45,8 +75,11 @@
             $('#user-list-board').remove();
             $('.game-heading').text("Enter Username");
             $('#new-user-name').css("display", "flex");
+           
        });
-        
+       
+       
+       
 
 });
 </script>

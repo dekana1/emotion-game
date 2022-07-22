@@ -239,8 +239,13 @@ span{
 
     color: white;
     padding: 0px 0px 10px;
+    
 }
-
+#user-list{
+   max-height: 250px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
 #user-list>ol>li{
     font-size: 20px;
     display: flex;
